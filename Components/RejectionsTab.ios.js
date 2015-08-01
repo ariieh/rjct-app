@@ -4,18 +4,16 @@ var React = require('react-native');
 var {
   StyleSheet,
   Text,
-  View
+  View,
+  NavigatorIOS
 } = React;
 
+var RejectionsList = require('./RejectionsList.ios.js');
+
 var styles = StyleSheet.create({
-    description: {
-        fontSize: 20,
-        backgroundColor: 'white'
-    },
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+      flex: 1
+
     }
 });
 
@@ -30,11 +28,10 @@ class RejectionsTab extends React.Component{
 
   render(){
     return(
-      <View style={styles.container}>
-      <Text style={styles.description}>
-      Rejections View
-      </Text>
-      </View>
+      <NavigatorIOS
+      style={styles.container}
+      initialRoute={{title: "Rejections List", component: RejectionsList}}
+      />
     )
   }
 }
