@@ -8,7 +8,8 @@ var {
   Image,
   ListView,
   TouchableHighlight,
-  Component
+  Component,
+  ActivityIndicatorIOS
 } = React;
 
 
@@ -43,13 +44,22 @@ var styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: '#dddddd'
-  }
+  },
+  listView: {
+    backgroundColor: '#F5FCFF'
+   },
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+   }
 });
 
 class RejectionsList extends Component{
   constructor(props){
     super(props);
     this.state = {
+      isLoading: true,
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2
       })
@@ -57,10 +67,25 @@ class RejectionsList extends Component{
   }
 
   componentDidMount(){
+    this.fetchData();
+  }
+
+  fetchData(){
     var rejections = FAKE_REJECTION_DATA;
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(rejections)
+      dataSource: this.state.dataSource.cloneWithRows(rejections),
+      isLoading: false
     });
+
+    /* fetch(REQUEST_URL)
+       .then((response) => response.json())
+       .then((responseData) => {
+       this.setState({
+       dataSource: this.state.dataSource.cloneWithRows(responseData.items),
+       isLoading: false
+       });
+       })
+       .done(); */
   }
 
   renderRejection(rejection){
@@ -83,8 +108,23 @@ class RejectionsList extends Component{
     );
   }
 
+  renderLoadingView(){
+    return(
+      <View style={styles.loading}>
+      <ActivityIndicatorIOS
+      size='large'/>
+      <Text>
+      Loading rejections...
+      </Text>
+      </View>
+    )
+  }
+
   render(){
-    var rejection = FAKE_REJECTION_DATA[0];
+    if(this.state.isLoading){
+      return this.renderLoadingView();
+    }
+
     return (
       <ListView
       dataSource={this.state.dataSource}
