@@ -30,8 +30,8 @@ var styles = StyleSheet.create({
 class RejectionDetail extends Component{
   render(){
     var rejection = this.props.rejection;
-    var imageURI = (typeof rejection.rejectionInfo.imageLinks !== 'undefined') ? rejection.rejectionInfo.imageLinks.thumbnail : '';
-    var description = (typeof rejection.rejectionInfo.description !== 'undefined') ? rejection.rejectionInfo.description : '';
+    var imageURI = (typeof rejection.imageLinks !== 'undefined') ? rejection.imageLinks.thumbnail : '';
+    var description = (typeof rejection.body !== 'undefined') ? rejection.body : '';
 
     return (
       <View style={styles.container}>

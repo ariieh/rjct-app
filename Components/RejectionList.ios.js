@@ -19,6 +19,10 @@ var FAKE_REJECTION_DATA = [
   {rejectionInfo: {date: "6/10/15", title: "Best rejection evar!", description: "Awesome rejection!", imageLinks: {thumbnail: "http://dgicdplf3pvka.cloudfront.net/images/dogbreeds/large/Welsh-Corgi-Pembroke.jpg"}}}
 ];
 
+var CORGI_URI =  "http://dgicdplf3pvka.cloudfront.net/images/dogbreeds/large/Welsh-Corgi-Pembroke.jpg";
+
+var REQUEST_URL = "https://rjct.herokuapp.com/rjcts?startIndex=0&endIndex=10";
+
 var styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -73,26 +77,26 @@ class RejectionList extends Component{
   }
 
   fetchData(){
-    var rejections = FAKE_REJECTION_DATA;
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(rejections),
-      isLoading: false
-    });
-
-    /* fetch(REQUEST_URL)
-       .then((response) => response.json())
-       .then((responseData) => {
+    /* var rejections = FAKE_REJECTION_DATA;
        this.setState({
-       dataSource: this.state.dataSource.cloneWithRows(responseData.items),
+       dataSource: this.state.dataSource.cloneWithRows(rejections),
        isLoading: false
-       });
-       })
-       .done(); */
+       }); */
+
+    fetch(REQUEST_URL)
+           .then((response) => response.json())
+           .then((responseData) => {
+             this.setState({
+               dataSource: this.state.dataSource.cloneWithRows(responseData),
+               isLoading: false
+             });
+           })
+           .done();
   }
 
   showRejectionDetail(rejection){
     this.props.navigator.push({
-      title: rejection.rejectionInfo.title,
+      title: rejection.title,
       component: RejectionDetail,
       passProps: {rejection}
     })
@@ -104,11 +108,11 @@ class RejectionList extends Component{
       <View>
 
       <View style={styles.container}>
-      <Image source={{uri: rejection.rejectionInfo.imageLinks.thumbnail}}
+      <Image source={{uri: rejection.imageLinks !== undefined ? rejection.imageLinks.thumbnail : CORGI_URI }}
       style={styles.thumbnail} />
       <View style={styles.rightContainer}>
-      <Text style={styles.title}>{rejection.rejectionInfo.title}</Text>
-      <Text style={styles.description}>{rejection.rejectionInfo.description}</Text>
+      <Text style={styles.title}>{rejection.title}</Text>
+      <Text style={styles.description}>{rejection.body}</Text>
       </View>
       </View>
 
