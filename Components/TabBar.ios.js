@@ -8,7 +8,7 @@ var {
   View
 } = React;
 
-var RejectionsTab = require('./RejectionsTab.ios.js');
+var RejectionTab = require('./RejectionTab.ios.js');
 var SocialTab = require('./SocialTab.ios.js');
 
 
@@ -49,7 +49,7 @@ class TabBar extends React.Component{
         });
       }}>
 
-      <RejectionsTab />
+      <RejectionTab />
       </TabBarIOS.Item>
 
       <TabBarIOS.Item

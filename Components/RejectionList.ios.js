@@ -12,6 +12,8 @@ var {
   ActivityIndicatorIOS
 } = React;
 
+var RejectionDetail = require('./RejectionDetail.ios.js');
+
 
 var FAKE_REJECTION_DATA = [
   {rejectionInfo: {date: "6/10/15", title: "Best rejection evar!", description: "Awesome rejection!", imageLinks: {thumbnail: "http://dgicdplf3pvka.cloudfront.net/images/dogbreeds/large/Welsh-Corgi-Pembroke.jpg"}}}
@@ -55,7 +57,7 @@ var styles = StyleSheet.create({
    }
 });
 
-class RejectionsList extends Component{
+class RejectionList extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -88,9 +90,17 @@ class RejectionsList extends Component{
        .done(); */
   }
 
+  showRejectionDetail(rejection){
+    this.props.navigator.push({
+      title: rejection.rejectionInfo.title,
+      component: RejectionDetail,
+      passProps: {rejection}
+    })
+  }
+
   renderRejection(rejection){
     return (
-      <TouchableHighlight>
+      <TouchableHighlight onPress={() => this.showRejectionDetail(rejection)} underlayColor="#dddddd">
       <View>
 
       <View style={styles.container}>
@@ -135,4 +145,4 @@ class RejectionsList extends Component{
   }
 }
 
-module.exports = RejectionsList;
+module.exports = RejectionList;

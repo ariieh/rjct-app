@@ -8,7 +8,7 @@ var {
   NavigatorIOS
 } = React;
 
-var RejectionsList = require('./RejectionsList.ios.js');
+var RejectionList = require('./RejectionList.ios.js');
 
 var styles = StyleSheet.create({
     container: {
@@ -17,7 +17,7 @@ var styles = StyleSheet.create({
     }
 });
 
-class RejectionsTab extends React.Component{
+class RejectionTab extends React.Component{
 
   constructor(props){
     super(props);
@@ -30,10 +30,10 @@ class RejectionsTab extends React.Component{
     return(
       <NavigatorIOS
       style={styles.container}
-      initialRoute={{title: "Rejections List", component: RejectionsList}}
+      initialRoute={{title: "Rejection List", component: RejectionList}}
       />
     )
   }
 }
 
-module.exports = RejectionsTab;
+module.exports = RejectionTab;
