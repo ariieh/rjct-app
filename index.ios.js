@@ -10,11 +10,13 @@ var {
 
 // var Intro = require('./Components/Intro.ios.js');
 var TabBar = require('./Components/TabBar.ios.js');
-
+var DBUtils = require('./DB/index.js');
 
 class RJCT extends React.Component{
   constructor(props){
     super(props);
+    DBUtils.initializeDB();
+    debugger
     this.state = {
       user: null
     };
