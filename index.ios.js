@@ -8,7 +8,7 @@ var {
   View
 } = React;
 
-var Intro = require('./Components/Intro.ios.js');
+// var Intro = require('./Components/Intro.ios.js');
 var TabBar = require('./Components/TabBar.ios.js');
 
 
@@ -21,15 +21,15 @@ class RJCT extends React.Component{
   }
 
   render() {
-    if (this.state.user){
+    // if (this.state.user){
       return (
         <TabBar />
       );
-    } else {
-      return (
-        <Intro />
-      )
-    }
+    // } else {
+    //   return (
+    //     <Intro />
+    //   )
+    // }
   }
 }
 
