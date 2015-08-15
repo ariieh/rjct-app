@@ -13,10 +13,23 @@ var TabBar = require('./Components/TabBar.ios.js');
 
 
 class RJCT extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      user: null
+    };
+  }
+
   render() {
-    return (
-      <TabBar />
-    );
+    if (this.state.user){
+      return (
+        <TabBar />
+      );
+    } else {
+      return (
+        <Intro />
+      )
+    }
   }
 }
 

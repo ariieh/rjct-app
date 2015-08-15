@@ -13,7 +13,6 @@ var RejectionList = require('./RejectionList.ios.js');
 var styles = StyleSheet.create({
     container: {
       flex: 1
-
     }
 });
 

@@ -1,46 +1,54 @@
 var React = require('react-native');
+var Swiper = require('react-native-swiper');
 var {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
 } = React;
 
 var styles = StyleSheet.create({
-  container: {
+  wrapper: {
+  },
+  slide1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#9DD6EB',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#97CAE5',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
   }
 });
-
 
 class Intro extends React.Component{
   render(){
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to RJCT
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, get rejected!
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <Swiper style={styles.wrapper} showsButtons={true}>
+      <View style={styles.slide1}>
+      <Text style={styles.text}>Hello Swiper</Text>
       </View>
+      <View style={styles.slide2}>
+      <Text style={styles.text}>Beautiful</Text>
+      </View>
+      <View style={styles.slide3}>
+      <Text style={styles.text}>And simple</Text>
+      </View>
+      </Swiper>
     );
   }
 }
